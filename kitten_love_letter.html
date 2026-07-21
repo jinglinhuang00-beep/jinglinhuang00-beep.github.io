@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>嫁给我好吗</title>
+<style>
+body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle,#ffe1eb,#fff);font-family:"Microsoft YaHei";color:#7a4055}
+.card{width:85%;max-width:520px;padding:35px;text-align:center;background:#ffffffaa;backdrop-filter:blur(15px);border-radius:30px;box-shadow:0 20px 60px #d98aa844}
+.seal{width:70px;height:70px;margin:-70px auto 20px;border-radius:50%;background:#e98aaa;color:white;font-size:30px;display:flex;align-items:center;justify-content:center}
+.heart{font-size:45px;color:#e98aaa;animation:pulse 1s infinite}
+@keyframes pulse{50%{transform:scale(1.2)}}
+button{border-radius:50px;padding:15px 35px;margin:10px;border:1px solid white;background:#ffffff88;box-shadow:0 8px 20px #d98aaa44;color:#b35478;cursor:pointer;transition:.4s}
+.hidden{display:none}
+.danmu{position:fixed;color:#e98aaa;animation:move 8s linear infinite;opacity:.6}
+@keyframes move{from{transform:translateX(100vw)}to{transform:translateX(-100vw)}}
+</style>
+</head>
+<body>
+<div class="card">
+<div class="seal">❤</div>
+<div id="intro">
+<h1>私人情书</h1>
+<p>
+给 Kitten：<br><br>
+我想过很多种浪漫的方式。<br>
+最后发现，我最想做的事情只是——<br>
+在你回来的时候，永远留一个位置。<br><br>
+我不想改变你。<br>
+我想陪你成为完整的你。<br><br>
+所以，今天我想问：
+</p>
+<button onclick="openLetter()">打开信封</button>
+</div>
+
+<div id="question" class="hidden">
+<h1>嫁给我好吗 <span class="heart">♡</span></h1>
+<p id="text">我想听你的答案。</p>
+<button id="yes" onclick="yes()">我愿意</button>
+<button id="think" onclick="think()">我考虑</button>
+</div>
+
+<div id="answer" class="hidden">
+<h1>给 Kitten 的誓词</h1>
+<p>
+我承诺尊重你的自由，珍惜你的光芒。<br>
+在你想飞的时候陪你飞，<br>
+在你累的时候给你一个可以停靠的地方。<br><br>
+我选择的不是拥有你。<br>
+而是在每一天，重新选择你。
+</p>
+</div>
+</div>
+<script>
+let size=18;
+function openLetter(){
+intro.className="hidden";question.className="";
+}
+function think(){
+size+=15;yes.style.fontSize=size+"px";
+text.innerText=["嗯？还在考虑吗？那我只好让答案越来越明显。","我愿意这个选项，好像有点不听话地变大了。","你慢慢想，我的答案已经准备好了。"][Math.floor(Math.random()*3)];
+}
+function yes(){
+question.className="hidden";answer.className="";
+for(let i=0;i<10;i++){let d=document.createElement("div");d.className="danmu";d.style.top=i*10+"%";d.innerHTML="❤ 只为Kitten准备";document.body.appendChild(d);}
+}
+</script>
+</body>
+</html>
