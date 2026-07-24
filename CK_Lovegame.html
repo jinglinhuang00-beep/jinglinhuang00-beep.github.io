@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>C × K Secret Game</title>
+<style>
+body{margin:0;background:#120b12;color:#fff;font-family:system-ui;text-align:center;overflow:hidden}
+.card{position:relative;margin:8vh auto;padding:40px;max-width:520px;background:rgba(255,245,235,.08);border:1px solid #d8a46b;border-radius:28px;box-shadow:0 0 50px #ff7b9c55}
+button{padding:14px 28px;border:0;border-radius:999px;background:#d85b7d;color:white;font-size:18px;cursor:pointer;margin:8px}
+#heart{font-size:80px;animation:pulse 1s infinite}
+@keyframes pulse{50%{transform:scale(1.2)}}
+.float{position:absolute;animation:up 5s linear forwards}
+@keyframes up{to{transform:translateY(-100vh);opacity:0}}
+.hidden{display:none}
+</style>
+</head>
+<body>
+<div class="card">
+<div id="heart">♡</div>
+<h1>C × K Love Code</h1>
+<p id="text">欢迎进入 Private Draft。准备好被发现了吗？</p>
+<button onclick="choose(1)">正确答案</button>
+<button onclick="choose(0)">错误答案</button>
+<div id="score"></div>
+</div>
+<script>
+let n=0;
+const good=["你通过了默契测试。","嗯，看来你真的懂。","今天的奖励：一个秘密拥抱。"];
+const bad=["抓到了。","坏猫选择了这条路。","这不是惩罚页面，是备用拥抱。"];
+function choose(x){
+ n++;
+ document.getElementById("text").innerText=(x?good:bad)[n%3];
+ document.getElementById("score").innerText="心跳值："+(70+n*7)+"%";
+ if(n%3===0) secret();
+}
+function secret(){
+ for(let i=0;i<15;i++){
+  let e=document.createElement("div");
+  e.className="float";e.innerHTML="♥";
+  e.style.left=Math.random()*100+"%";
+  e.style.bottom="0";
+  document.body.appendChild(e);
+  setTimeout(()=>e.remove(),5000);
+ }
+}
+</script>
+</body>
+</html>
