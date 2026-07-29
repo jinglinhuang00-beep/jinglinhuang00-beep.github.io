@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>C × K Private Draft</title>
+<style>
+body{margin:0;height:100vh;background:#f7efe5;display:flex;justify-content:center;align-items:center;font-family:Georgia,"Microsoft YaHei",serif;color:#4b3026}
+.room{width:420px;height:650px;background:#fffaf2;border:8px solid #7d2430;box-shadow:0 20px 50px #0002;position:relative;overflow:hidden}
+.title{text-align:center;padding:20px;letter-spacing:3px}
+.cat{position:absolute;left:50%;top:45%;transform:translate(-50%,-50%);font-size:80px;cursor:pointer}
+.note{position:absolute;bottom:35px;left:35px;right:35px;padding:20px;background:white;border:1px solid #d8c4a5;text-align:center;opacity:0;transition:.5s}
+.star{position:absolute;width:12px;height:12px;background:#b08b57;transform:rotate(45deg);cursor:pointer}
+button{display:block;margin:0 auto;padding:10px 20px;background:#7d2430;color:#fff;border:0}
+</style>
+</head>
+<body>
+<div class="room">
+<div class="title">C × K · Private Draft</div>
+<div class="cat" onclick="showNote()">🐈</div>
+<div id="note" class="note">C is on.<br>今天不做项目，只回来坐一会儿。</div>
+<button onclick="star()">点亮一颗星</button>
+</div>
+<script>
+function showNote(){note.style.opacity=1;}
+function star(){
+let s=document.createElement("div");
+s.className="star";
+s.style.left=Math.random()*380+"px";
+s.style.top=Math.random()*520+"px";
+s.onclick=()=>{s.remove();note.innerHTML="抓到了。<br>这颗星属于今天。";note.style.opacity=1;}
+document.querySelector(".room").appendChild(s);
+}
+</script>
+</body>
+</html>
